@@ -3,39 +3,43 @@
 //app must refresh every 1000ms so see seconds shifting
 
 document.getElementById("start").addEventListener('click', startTimer);
+document.getElementById("cancel").addEventListener('click', cancelTimer);
 
 let startTime;
 let endTime;
 let origTimePeriod;
 let newTimePeriod;
-
-function getEndTime() {
-    let dT = new Date();
-
-    let hours = parseInt(document.getElementById("hours").value);
-    let minutes = parseInt(document.getElementById("minutes").value);
-    let seconds = parseInt(document.getElementById("seconds").value);
-
-    dT.setHours(dT.getHours() + hours);
-    dT.setMinutes(dT.getMinutes() + minutes);
-    dT.setSeconds(dT.getSeconds() + seconds);
-    return dT;
-};
+let timer;
+let cancelled = false;
 
 function startTimer() {
+    cancelled = false;
     startTime = new Date();
-    endTime =getEndTime();
-    
-    origTimePeriod = endTime.getTime() - startTime.getTime(); 
+    endTime = getEndTime();
+
+    origTimePeriod = endTime.getTime() - startTime.getTime();
     newTimePeriod = origTimePeriod;
-    let timer = setInterval(displayCountdown, 1000);
+    timer = setInterval(displayCountdown, 1000);
+}
+
+function cancelTimer() {
+    cancelled = true;
 }
 
 function displayCountdown() {
     let timeLeft = msToTime(newTimePeriod);
 
-    document.getElementById("clock").innerHTML = '<p>${timeLeft["hour"]}h ${timeLeft["mins"]}m ${timeLeft["secs"]}s</p>';
+    document.getElementById("clock").innerHTML = `<p>${timeLeft["hour"]}h ${timeLeft["mins"]}m ${timeLeft["secs"]}s</p>`;
+
+    let newHeight = Math.floor(newTimePeriod / origTimePeriod * 100) * 3;
+    document.getElementById("progressBar").setAttribute("height", newHeight);
+
     newTimePeriod -= 1000;
+
+    if (newTimePeriod < 0 || cancelled) {
+        clearInterval(timer);
+        document.getElementById("clock").innerHTML = "Complete!";
+    }
 }
 
 function msToTime(milliseconds) {
@@ -54,3 +58,16 @@ function msToTime(milliseconds) {
 
     return time;
 }
+
+function getEndTime() {
+    let dT = new Date();
+
+    let hours = parseInt(document.getElementById("hours").value);
+    let minutes = parseInt(document.getElementById("minutes").value);
+    let seconds = parseInt(document.getElementById("seconds").value);
+
+    dT.setHours(dT.getHours() + hours);
+    dT.setMinutes(dT.getMinutes() + minutes);
+    dT.setSeconds(dT.getSeconds() + seconds);
+    return dT;
+};
