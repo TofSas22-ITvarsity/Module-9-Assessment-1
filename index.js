@@ -31,14 +31,22 @@ function displayCountdown() {
 
     document.getElementById("clock").innerHTML = `<p>${timeLeft["hour"]}h ${timeLeft["mins"]}m ${timeLeft["secs"]}s</p>`;
 
-    let newHeight = Math.floor(newTimePeriod / origTimePeriod * 100) * 3;
-    document.getElementById("progressBar").setAttribute("height", newHeight);
+    //let newHeight = Math.floor(newTimePeriod / origTimePeriod * 100) * 3;
+    //document.getElementById("heartPath").setAttribute("height", newHeight);
+
+    //let newOpacity = newTimePeriod / origTimePeriod;
+    //document.getElementById("heartShape").style.opacity = newOpacity;
+
+    let elapsed = origTimePeriod - newTimePeriod;
+    let newOpacity = elapsed / origTimePeriod;
+    document.getElementById("heartShape").style.opacity = newOpacity;
 
     newTimePeriod -= 1000;
 
     if (newTimePeriod < 0 || cancelled) {
         clearInterval(timer);
         document.getElementById("clock").innerHTML = "<p>Complete!</p>";
+        document.getElementById("heartShape").style.opacity = 1;
     }
 }
 

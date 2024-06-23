@@ -1,7 +1,12 @@
 body {
-    background-color: #009788;
+    background-color: #ffd2d2;
     font-family: "Raleway", sans-serif;
     text-align: center;
+}
+
+h1 {
+    color: #1e1e1e;
+    font-size: 50px;
 }
 
 .container {
@@ -9,51 +14,82 @@ body {
 }
 
 p {
-    color: white;
-    font-size: 10vw;
+    color: #f1f1f1;
+    font-size: 6.8vw;
 }
 
 #clock {
-    width: 100%;
     text-align: center;
+    width: 50%;
+    margin: 0 auto;
+    background-color: #1e1e1e;
+    border: solid 5px #1e1e1e;
+    border-radius: 30px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
 }
 
+#clock:hover {
+    box-shadow: none;
+}
+/*
 #progressBarContainer {
-    transform: rotate(180deg);
+    transform: rotate(90deg);
+}*/
+
+.controls {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
 }
 
 .buttonSelection {
-    width: 100%;
     padding-top: 3rem;
+
+    display: flex;
+    gap: 10px;
 }
 
 .roundButton {
-    border-radius: 50%;
-    background-color: white;
+    background-color: #1e1e1e;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    color: #fff;
     border: 0;
-    width: 5rem;
+    border-radius: 100px;
+    width: 10rem;
     height: 5rem;
     font-size: 1rem;
 }
 
-.button1 {
-    float: left;
-    width: 49%;
+.roundButton:hover {
+    box-shadow: none;
+    background-color: rgb(148, 14, 14);
 }
 
-.button2 {
-    float: right;
-    width: 49%;
+#content {
+    display: flex;
+    gap: 10px;
+    padding: 3rem;
 }
 
 .selector {
-    background-color: white;
+    background-color: #1e1e1e;
+    color: #fff;
+    height: 80px;
     padding: .8rem 1.4rem .9rem .8rem;
-    width: 30%;
     border-radius: .5rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
     -moz-appearance: none;
     -webkit-appearance: none;
     appearance: none;
     font-size: 1rem;
     text-align: center;
+}
+
+.selector:hover {
+    box-shadow: none;
+    background-color: rgb(148, 14, 14);
 }
