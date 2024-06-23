@@ -38,7 +38,7 @@ function displayCountdown() {
 
     if (newTimePeriod < 0 || cancelled) {
         clearInterval(timer);
-        document.getElementById("clock").innerHTML = "Complete!";
+        document.getElementById("clock").innerHTML = "<p>Complete!</p>";
     }
 }
 
